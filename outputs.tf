@@ -8,7 +8,7 @@ output "ses_configuration_sets_arn" {
 }
 output "ses_configuration_sets_delivery_options" {
   description = "Map of delivery_options values across all ses_configuration_sets, keyed the same as var.ses_configuration_sets"
-  value       = { for k, v in aws_ses_configuration_set.ses_configuration_sets : k => v.delivery_options if v.delivery_options != null && length(v.delivery_options) > 0 }
+  value       = { for k, v in aws_ses_configuration_set.ses_configuration_sets : k => one(v.delivery_options) if v.delivery_options != null && length(v.delivery_options) > 0 }
 }
 output "ses_configuration_sets_last_fresh_start" {
   description = "Map of last_fresh_start values across all ses_configuration_sets, keyed the same as var.ses_configuration_sets"
@@ -32,6 +32,6 @@ output "ses_configuration_sets_sending_enabled" {
 }
 output "ses_configuration_sets_tracking_options" {
   description = "Map of tracking_options values across all ses_configuration_sets, keyed the same as var.ses_configuration_sets"
-  value       = { for k, v in aws_ses_configuration_set.ses_configuration_sets : k => v.tracking_options if v.tracking_options != null && length(v.tracking_options) > 0 }
+  value       = { for k, v in aws_ses_configuration_set.ses_configuration_sets : k => one(v.tracking_options) if v.tracking_options != null && length(v.tracking_options) > 0 }
 }
 
